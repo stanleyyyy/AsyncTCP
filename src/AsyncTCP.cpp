@@ -1284,7 +1284,9 @@ void AsyncServer::begin(){
 
     if (err != ERR_OK) {
         _tcp_close(_pcb, -1);
-        log_e("bind error: %d", err);
+        log_e("bind error: %d, rebooting!", err);
+        delay(100);
+        ESP.restart();
         return;
     }
 
